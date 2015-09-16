@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="comic-news-app">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" media="all" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" media="all" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+        <link rel="stylesheet" media="all" type="text/css" href="bower_components/animate.css/animate.css">
+        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="app/app.js"></script>
+        <script type="text/javascript" src="app/controllers.js"></script>
+        <script type="text/javascript" src="app/services.js"></script>
+        <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+
+        <link rel="stylesheet" media="all" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        신간소식
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" ng-controller="login-controller as control">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" id="main-drop-menu" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="main-drop-menu">
+                                <li><span><fb:login-button show-faces="false" max-rows="0" size="large"></fb:login-button></span>
+                                <li><a href="#" ng-click="control.login()">로그인</a>
+                                <li><a href="#">새로 나온 책</a>
+                                <li><a href="#">체크한 책</a>
+                                <li><a href="#">설정</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div ng-controller="comic-news-list-controller as control" class="container">
+            <div ng-show="new_comics.length>0" class="row">
+                <div ng-repeat="info in new_comics" class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+                    <div class="book-thumbnail">
+                        <h2 class="check-book {{ info.isChecked?'checked':'' }}" ng-show="info.isChecked || info.isOver">
+                            <span class="glyphicon glyphicon-ok {{ ((!info.isChecked)&&info.isOver)?'bounceInUp animated':''}}"></span></h2>
+                        <img ng-src="{{ info.cover }}" class="img-thumbnail center-block" ng-mouseover="info.isOver=true" ng-mouseleave="info.isOver=false" ng-click="info.isChecked=!info.isChecked">
+                    </div>
+                    <p>{{ info.title }}</p>
+                    <p>{{ info.creator }}</p>
+                </div>
+            </div>
+        </div>
+        <div id="fb-root"></div>
+    </body>
+</html>

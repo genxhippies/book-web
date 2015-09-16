@@ -1,0 +1,17 @@
+body {
+    padding-top: 70px;
+}
+
+.book-thumbnail {
+    position:relative;
+    overflow:hidden;
+}
+.check-book {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    color: #808080;
+}
+.check-book.checked {
+    color: #00ff00;
+}
