@@ -1,4 +1,5 @@
 var app = angular.module('comic-news-app', [
+    'ngResource',
     'comic-news-controllers',
     'comic-news-services'
 ]);

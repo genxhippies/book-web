@@ -6,11 +6,18 @@ body {
     position:relative;
     overflow:hidden;
 }
+.check-book-panel {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color:#808080;
+    opacity: 0.5;
+}
 .check-book {
     position: absolute;
     bottom: 0px;
-    right: 10px;
-    color: #808080;
+    right: 0px;
+    color: #cccccc;
 }
 .check-book.checked {
     color: #00ff00;

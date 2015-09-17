@@ -7,6 +7,7 @@
         <link rel="stylesheet" media="all" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
         <link rel="stylesheet" media="all" type="text/css" href="bower_components/animate.css/animate.css">
         <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="app/app.js"></script>
@@ -24,8 +25,20 @@
                         신간소식
                     </a>
                 </div>
-                <div class="collapse navbar-collapse" ng-controller="login-controller as control">
+                <div id="comic-news-menu" class="collapse navbar-collapse" ng-controller="login-controller as control">
                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" id="main-drop-menu" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                로그인
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="main-drop-menu">
+                                <li><span><fb:login-button show-faces="false" max-rows="0" size="large"></fb:login-button></span>
+                            </ul>
+                        </li>
+                        <li><a href="#">새로 나온 책</a></li>
+                        <li><a href="#">체크한 책</a></li>
+                        <li><a href="#">설정</a></li>
+<!--
                         <li class="dropdown">
                             <a href="#" id="main-drop-menu" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="glyphicon glyphicon-menu-hamburger"></span>
@@ -38,6 +51,7 @@
                                 <li><a href="#">설정</a>
                             </ul>
                         </li>
+-->
                     </ul>
                 </div>
             </div>
@@ -46,9 +60,17 @@
             <div ng-show="new_comics.length>0" class="row">
                 <div ng-repeat="info in new_comics" class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
                     <div class="book-thumbnail">
-                        <h2 class="check-book {{ info.isChecked?'checked':'' }}" ng-show="info.isChecked || info.isOver">
-                            <span class="glyphicon glyphicon-ok {{ ((!info.isChecked)&&info.isOver)?'bounceInUp animated':''}}"></span></h2>
-                        <img ng-src="{{ info.cover }}" class="img-thumbnail center-block" ng-mouseover="info.isOver=true" ng-mouseleave="info.isOver=false" ng-click="info.isChecked=!info.isChecked">
+                        <img ng-src="{{ info.cover }}" class="img-thumbnail center-block {{ info.isOver?'pulse animated':'' }}" ng-mouseover="info.isOver=true" ng-mouseleave="info.isOver=false" ng-click="info.isChecked=!info.isChecked">
+                        <div class="check-book-panel {{ ((info.isOver && (!info.isChecked))?' bounceInUp animated':'') + ((info.isChecked)?' fadeOut animated':'') }}" ng-show="info.isOver && (!info.isChecked) ">
+                            <h3>
+                                <p class="text-center">{{ info.isChecked?'CHECKED':'CHECK' }}</p>
+                            </h3>
+                        </div>
+                        <div class="check-book container-fluid {{ (info.isChecked?'checked':'') + (((!info.isChecked)&&info.isOver)?'fadeInDown animated':'') }}" ng-show="info.isChecked || info.isOver">
+                            <h1>
+                                <span class="glyphicon glyphicon-ok-sign"></span>
+                            </h1>
+                        </div>
                     </div>
                     <p>{{ info.title }}</p>
                     <p>{{ info.creator }}</p>

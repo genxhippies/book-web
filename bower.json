@@ -1,9 +1,10 @@
 {
-  "name": "comic-project",
+  "name": "comic-news",
   "version": "0.0.0",
   "authors": [
     "Jaemok Lee <sagitarian.lee@gmail.com>"
   ],
+  "description: "",
   "main": "index.html",
   "moduleType": [
     "node"
@@ -18,6 +19,7 @@
   ],
   "dependencies": {
     "angular": "~1.4.5",
+    "angular-resource": "~1.4.5",
     "bootstrap": "~3.3.5",
     "animate.css": "~3.4.0",
     "jquery": ">= 1.9.1"
