@@ -1,71 +1,79 @@
 [
     {
+        "id": 1,
         "title": "첫사랑 몬스터",
         "link": "http://www.komacon.kr/dmk/manhwacon/view_info.asp?in_outorder=2015091108",
-        "cover": "data/첫사랑몬스터.jpg",
+        "cover": "comic-news/첫사랑몬스터.jpg",
         "description": "아키라 히요시마루 글, 아키라 히요시마루 그림",
         "creator": "아키라 히요시마루 글, 아키라 히요시마루 그림",
         "subject":"첫사랑 몬스터",
         "date":"2015091108"
     },
     {
+        "id": 2,
         "title": "푸른 여름",
         "link": "http://www.komacon.kr/dmk/manhwacon/view_info.asp?in_outorder=2015091107",
-        "cover": "data/푸른여름.jpg",
+        "cover": "comic-news/푸른여름.jpg",
         "description":"난바 아츠코 글,그림",
         "creator":"난바 아츠코 글,그림",
         "subject":"푸른 여름",
         "date":"2015091107"
     },
     {
+        "id": 3,
         "title":"우라라 (두 번째 인생이 시작되는 섬)",
         "link":"http://www.komacon.kr/dmk/manhwacon/view_info.asp?in_outorder=2015091106",
-        "cover":"data/우라라.jpg",
+        "cover":"comic-news/우라라.jpg",
         "description":"히우라 사토루 글,그림",
         "creator":"히우라 사토루 글,그림",
         "subject":"우라라 (두 번째 인생이 시작되는 섬)",
         "date":"2015091106"
     },
     {
+        "id": 4,
         "title":"도쿄 레이븐스",
         "link":"http://www.komacon.kr/dmk/manhwacon/view_info.asp?in_outorder=2015091105",
-        "cover":"data/도쿄레이븐스.jpg",
+        "cover":"comic-news/도쿄레이븐스.jpg",
         "description":"스즈미 아츠시 글,그림",
         "creator":"스즈미 아츠시 글,그림",
         "subject":"도쿄 레이븐스",
         "date":"2015091105"
     },
     {
+        "id": 5,
         "title":"소울 캐쳐스",
         "link":"http://www.komacon.kr/dmk/manhwacon/view_info.asp?in_outorder=2015091104",
-        "cover":"data/소울캐쳐스.jpg",
+        "cover":"comic-news/소울캐쳐스.jpg",
         "description":"신카이 히데오 글,그림",
         "creator":"신카이 히데오 글,그림",
         "subject":"소울 캐쳐스",
         "date":"2015091104"
     },
     {
+        "id": 6,
         "title":"국립자유경제고등학교 세실고 2학기",
         "link":"http://www.komacon.kr/dmk/manhwacon/view_info.asp?in_outorder=2015091103",
-        "cover":"data/세실고.jpg",
+        "cover":"comic-news/세실고.jpg",
         "description":"양혜석 글, 이현지 그림",
         "creator":"양혜석 글, 이현지 그림",
         "subject":"국립자유경제고등학교 세실고 2학기",
         "date":"2015091103"
     },
     {
+        "id": 7,
         "title":"내 후배가 이렇게 귀여울 리가 없어",
         "link":"http://www.komacon.kr/dmk/manhwacon/view_info.asp?in_outorder=2015091102",
-        "cover":"data/내후배가.jpg",
+        "cover":"comic-news/내후배가.jpg",
         "description":"이케다 사쿠라 글,그림",
         "creator":"이케다 사쿠라 글,그림",
         "subject":"내 후배가 이렇게 귀여울 리가 없어",
         "date":"2015091102"
     },
     {
+        "id": 8,
         "title":"도시정벌",
         "link":"http://www.komacon.kr/dmk/manhwacon/view_info.asp?in_outorder=2015091101",
-        "cover":"data/default.jpg",
+        "cover":"comic-news/default.jpg",
         "description":"신형빈 글, Sin 프로 그림",
         "creator":"신형빈 글, Sin 프로 그림",
         "subject":"도시정벌",
