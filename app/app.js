@@ -4,7 +4,7 @@ var app = angular.module('comic-news-app', [
 ]);
 
 
-app.run(['$rootScope', '$window', function($rootScope, $window) {
+app.run(['$rootScope', '$window', 'auth-service', function($rootScope, $window, authSvc) {
     $rootScope.user = {};
 
     $window.fbAsyncInit = function() {
@@ -22,7 +22,7 @@ app.run(['$rootScope', '$window', function($rootScope, $window) {
             xfbml: true,
             version: '2.4'
         });
-        //sAuth.watchAuthenticationStatusChange();
+        authSvc.watchAuthenticationStatusChange();
     };
 
     (function(d) {
