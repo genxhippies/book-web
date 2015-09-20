@@ -1,0 +1,47 @@
+<div ng-controller="comic-checked-list-controller as control" class="container">
+    <div ng-show="new_comics.length>0" class="row">
+        <div ng-repeat="info in checked_comics" class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div style='position:relative'>
+            <div class="thumbnail {{ info.isOverImage?'pulse animated':'' }}">
+                <div class="book-thumbnail">
+                    <img ng-src="{{ info.cover }}" class="img-rounded img-responsive center-block" ng-mouseover="info.isOverImage=true" ng-mouseleave="info.isOverImage=false" ng-click="control.showDetail(info)">
+                </div>
+                <div class="book-thumbnail-desc" ng-mouseover="control.setOver(info,1,true)" ng-mouseleave="control.setOver(info,1,nil)">
+                    <p class='title'>{{ info.title }}</p>
+                    <p class='author'>{{ info.creator }}</p>
+                </div>
+            </div>
+            <div class="check-book-panel {{ ((control.isOver(info))?' bounceInUp animated':'') }}" ng-mouseover="control.setOver(info,2,true)" ng-mouseleave="control.setOver(info,2,nil)" ng-show="control.isOver(info)" ng-click="control.toggleCheck(info)">
+                <h3>
+                    <p class="text-center">{{ info.isChecked?'CHECKED':'CHECK' }}</p>
+                </h3>
+            </div>
+            <div class="check-book container-fluid {{ (info.isChecked?'checked':'') + (((!info.isChecked)&&control.isOver(info))?'fadeInDown animated':'') }}" ng-mouseover="control.setOver(info,3,true)" ng-mouseleave="control.setOver(info,3,nil)" ng-show="info.isChecked || control.isOver(info)" ng-click="control.toggleCheck(info)">
+                <h1>
+                    <span class="glyphicon glyphicon-ok-sign"></span>
+                </h1>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/ng-template" id="detail.html">
+        <div class='modal-header'>
+            <h4>{{detail.title}}</h4>
+        </div>
+        <div class='modal-body'>
+            <div class='media'>
+                <div class='media-left'>
+                    <img ng-src="{{detail.cover}}" class="img-rouded">
+                </div>
+                <div class='media-body'>
+                    <p>{{detail.title}} </p>
+                    <p>{{detail.creator}} </p>
+                    <p>{{detail.description}} </p>
+                </div>
+            </div>
+        </div>
+        <div class='modal-footer'>
+            <button type='button' class='btn btn-default' ng-click='close()'>CLOSE</button>
+        </div>
+    </script>
+</div>

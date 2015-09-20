@@ -6,9 +6,14 @@
         <link rel="stylesheet" media="all" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" media="all" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
         <link rel="stylesheet" media="all" type="text/css" href="bower_components/animate.css/animate.css">
+        <link rel="stylesheet" media="all" type="text/css" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
         <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
         <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
         <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="app/app.js"></script>
         <script type="text/javascript" src="app/controllers.js"></script>
@@ -16,6 +21,7 @@
         <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
 
         <link rel="stylesheet" media="all" type="text/css" href="css/style.css">
+        <script type="text/javascript" src="js/script.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -24,8 +30,15 @@
                     <a class="navbar-brand" href="#">
                         신간소식
                     </a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#comic-news-menu" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
                 </div>
-                <div id="comic-news-menu" class="collapse navbar-collapse" ng-controller="login-controller as control">
+                <div id="comic-news-menu" class="collapse navbar-collapse" ng-controller="navbar-controller as control">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" id="main-drop-menu" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,48 +48,66 @@
                                 <li><span><fb:login-button show-faces="false" max-rows="0" size="large"></fb:login-button></span>
                             </ul>
                         </li>
-                        <li><a href="#">새로 나온 책</a></li>
-                        <li><a href="#">체크한 책</a></li>
+                        <li class="{{ control.isNews()?'active':'' }}"><a href="/#/news/">새로 나온 책</a></li>
+                        <li class="{{ control.isChecked()?'active':'' }}"><a href="/#/checked/">체크한 책</a></li>
                         <li><a href="#">설정</a></li>
-<!--
-                        <li class="dropdown">
-                            <a href="#" id="main-drop-menu" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="glyphicon glyphicon-menu-hamburger"></span>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="main-drop-menu">
-                                <li><span><fb:login-button show-faces="false" max-rows="0" size="large"></fb:login-button></span>
-                                <li><a href="#" ng-click="control.login()">로그인</a>
-                                <li><a href="#">새로 나온 책</a>
-                                <li><a href="#">체크한 책</a>
-                                <li><a href="#">설정</a>
-                            </ul>
-                        </li>
--->
                     </ul>
                 </div>
             </div>
         </nav>
+        <div class="view-container view-animate-container">
+            <div ng-view class="view-frame view-animate"></div>
+        </div>
+
+<!--
         <div ng-controller="comic-news-list-controller as control" class="container">
             <div ng-show="new_comics.length>0" class="row">
                 <div ng-repeat="info in new_comics" class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
-                    <div class="book-thumbnail">
-                        <img ng-src="{{ info.cover }}" class="img-thumbnail center-block {{ info.isOver?'pulse animated':'' }}" ng-mouseover="info.isOver=true" ng-mouseleave="info.isOver=false" ng-click="info.isChecked=!info.isChecked">
-                        <div class="check-book-panel {{ ((info.isOver && (!info.isChecked))?' bounceInUp animated':'') + ((info.isChecked)?' fadeOut animated':'') }}" ng-show="info.isOver && (!info.isChecked) ">
-                            <h3>
-                                <p class="text-center">{{ info.isChecked?'CHECKED':'CHECK' }}</p>
-                            </h3>
+                    <div style='position:relative'>
+                    <div class="thumbnail {{ info.isOverImage?'pulse animated':'' }}">
+                        <div class="book-thumbnail">
+                            <img ng-src="{{ info.cover }}" class="img-rounded img-responsive center-block" ng-mouseover="info.isOverImage=true" ng-mouseleave="info.isOverImage=false" ng-click="control.showDetail(info)">
                         </div>
-                        <div class="check-book container-fluid {{ (info.isChecked?'checked':'') + (((!info.isChecked)&&info.isOver)?'fadeInDown animated':'') }}" ng-show="info.isChecked || info.isOver">
-                            <h1>
-                                <span class="glyphicon glyphicon-ok-sign"></span>
-                            </h1>
+                        <div class="book-thumbnail-desc" ng-mouseover="control.setOver(info,1,true)" ng-mouseleave="control.setOver(info,1,nil)">
+                            <p class='title'>{{ info.title }}</p>
+                            <p class='author'>{{ info.creator }}</p>
                         </div>
                     </div>
-                    <p>{{ info.title }}</p>
-                    <p>{{ info.creator }}</p>
+                    <div class="check-book-panel {{ ((control.isOver(info))?' bounceInUp animated':'') }}" ng-mouseover="control.setOver(info,2,true)" ng-mouseleave="control.setOver(info,2,nil)" ng-show="control.isOver(info)" ng-click="control.toggleCheck(info)">
+                        <h3>
+                            <p class="text-center">{{ info.isChecked?'CHECKED':'CHECK' }}</p>
+                        </h3>
+                    </div>
+                    <div class="check-book container-fluid {{ (info.isChecked?'checked':'') + (((!info.isChecked)&&control.isOver(info))?'fadeInDown animated':'') }}" ng-mouseover="control.setOver(info,3,true)" ng-mouseleave="control.setOver(info,3,nil)" ng-show="info.isChecked || control.isOver(info)" ng-click="control.toggleCheck(info)">
+                        <h1>
+                            <span class="glyphicon glyphicon-ok-sign"></span>
+                        </h1>
+                    </div>
+                    </div>
                 </div>
             </div>
+            <script type="text/ng-template" id="detail.html">
+                <div class='modal-header'>
+                    <h4>{{detail.title}}</h4>
+                </div>
+                <div class='modal-body'>
+                    <div class='media'>
+                        <div class='media-left'>
+                            <img ng-src="{{detail.cover}}" class="img-rouded">
+                        </div>
+                        <div class='media-body'>
+                            <p>{{detail.title}} </p>
+                            <p>{{detail.creator}} </p>
+                            <p>{{detail.description}} </p>
+                        </div>
+                    </div>
+                </div>
+                <div class='modal-footer'>
+                    <button type='button' class='btn btn-default' ng-click='close()'>CLOSE</button>
+                </div>
+            </script>
         </div>
-        <div id="fb-root"></div>
+-->
+       <div id="fb-root"></div>
     </body>
 </html>

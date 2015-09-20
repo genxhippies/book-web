@@ -4,11 +4,10 @@ angular.module('comic-news-services', [])
         
     }
 })
-.factory('comic-news-intro-service', function() {
-    var query = function() {
-    };
-
-    return {
-        "query": query
-    }
-});
+.factory('ComicNews', ['$resource',function($resource) {
+    return $resource('comic-news/:comicId.json', {}, {
+        query: { method:"GET", params:{comicId:'comics'}, isArray:true },
+        queryChecked: { method:"GET", params:{comicId:'comics-checked'}, isArray:true },
+        get: { method:"GET", params:{comicId:'comics'}, isArray:false }
+    });
+}]);

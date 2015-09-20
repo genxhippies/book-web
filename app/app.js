@@ -1,8 +1,28 @@
 var app = angular.module('comic-news-app', [
+    'ngAnimate',
+    'ngRoute',
     'ngResource',
     'comic-news-controllers',
-    'comic-news-services'
+    'comic-news-services',
+    'ui.bootstrap'
 ]);
+
+app.config(['$routeProvider',
+    function($routeProvider) {
+        $routeProvider.
+        when('/news/', {
+            templateUrl: 'comic-news.html',
+            controller: 'comic-news-list-controller'
+        }).
+        when('/checked/', {
+            templateUrl: 'comic-checked.html',
+            controller: 'comic-news-list-controller'
+        }).
+        otherwise({
+            redirectTo: '/news/'
+        })
+    }]);
+        
 
 
 app.run(['$rootScope', '$window', function($rootScope, $window) {

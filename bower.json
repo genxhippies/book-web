@@ -4,7 +4,7 @@
   "authors": [
     "Jaemok Lee <sagitarian.lee@gmail.com>"
   ],
-  "description: "",
+  "description": "",
   "main": "index.html",
   "moduleType": [
     "node"
@@ -18,8 +18,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.5",
-    "angular-resource": "~1.4.5",
+    "angular": "1.4.6",
+    "angular-animate": "1.4.6",
+    "angular-route": "1.4.6",
+    "angular-resource": "1.4.6",
+    "angular-bootstrap":"~0.13.4",
     "bootstrap": "~3.3.5",
     "animate.css": "~3.4.0",
     "jquery": ">= 1.9.1"
