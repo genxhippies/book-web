@@ -1,5 +1,5 @@
 angular.module('comic-news-services', [])
-.factory('auth-service', ['$http', function($http) {
+.factory('auth-service', ['$http', function($http, $httpProvider) {
     return {
         "watchAuthenticationStatusChange" : function() {
             var _self = this;
@@ -12,14 +12,41 @@ angular.module('comic-news-services', [])
                     // res.expiresIn
                     // res.signedRequest
                     // res.userId
-                    console.log("user is logged in");
+                    console.log("user is logged in "+res.authResponse.accessToken);
 
-                    $http.post('http://book.iizs.net:8000/auth/convert-token', {
-                        "grant_type":"convert_token",
-                        "client_id":"1589308981337436",
-                        "client_secret":"3e909bfb588c4255715ccf7c70ae07f2",
-                        "backend":"facebook",
-                        "token":res.accessToken
+                    $.ajax({
+                        url:'http://book.iizs.net/auth/convert-token',
+                        type:'get',
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        data: {
+                            grant_type:'convert_token',
+                            client_id:'',
+                            client_secret:'',
+                            backend:'facebook',
+                            token:res.authResponse.accessToken
+                        },
+                        headers: {
+                            //Authorization: 'Bearer facebook ' + res.authResponse.accessToken
+                            Authorization: res.authResponse.accessToken,
+                            TESTHEADER: res.authResponse.accessToken
+                        },
+                        dataType: 'json',
+                        successs: function(data) {
+                            console.log('SUCCESS');
+                            console.log(data);
+                        }
+                    });
+
+/*
+                    $http.defaults.headers.post.Authorization = 'Bearer facebook '+res.authResponse.accessToken;
+                    $http.post('http://book.iizs.net/auth/convert-token', {
+                            "grant_type":"convert_token",
+                            "client_id":"1589308981337436",
+                            "client_secret":"3e909bfb588c4255715ccf7c70ae07f2",
+                            "backend":"facebook",
+                            "token":res.accessToken
                     }).then(function(response) {
                         console.log('book.iizs.net login response');
                         console.log(response);
@@ -28,6 +55,7 @@ angular.module('comic-news-services', [])
                         console.log('book.iizs.net login error');
                         console.log(response);
                     })
+*/
                 } else {
                     // user is not logged in.
                     console.log("user is not logged in");
