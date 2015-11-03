@@ -7,6 +7,7 @@ body {
 .view-animate {
 }
 
+/*
 .view-animate.ng-enter, .view-animate.ng-leave {
     transition:all cubic-bezier(0.250, 0.250, 0.750, 0.750) 1.0s;
     position:absolute;
@@ -25,9 +26,11 @@ body {
 .view-animate.ng-leave.ng-leave-active {
     transform: rotateY(90deg);
 }
+*/
 
 .book-thumbnail {
     position:relative;
+    cursor:pointer;
 }
 
 .book-thumbnail-desc {
@@ -52,6 +55,7 @@ body {
     background-color:#808080;
     opacity: 0.5;
     border-radius: 4px;
+    cursor:default;
 }
 .check-book {
     position: absolute;
