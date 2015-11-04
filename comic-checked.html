@@ -4,7 +4,7 @@
             <div style='position:relative'>
             <div class="thumbnail">
                 <div class="book-thumbnail">
-                    <img ng-src="{{ info.cover }}" class="img-rounded img-responsive center-block" ng-mouseover="info.isOverImage=true" ng-mouseleave="info.isOverImage=false" ng-click="control.showDetail(info)">
+                    <img ng-src="{{ info.cover }}" class="img-rounded img-responsive center-block" ng-mouseover="control.setOver(info,0,true)" ng-mouseleave="control.setOver(info,0,nil)" ng-click="control.showDetail(info)">
                 </div>
                 <div class="book-thumbnail-desc" ng-mouseover="control.setOver(info,1,true)" ng-mouseleave="control.setOver(info,1,nil)">
                     <p class='title'>{{ info.title }}</p>

@@ -28,7 +28,7 @@ angular.module('comic-news-controllers', [])
             info['isOver'+i] = v;
         },
         isOver : function(info) {
-            return info.isOver1 || info.isOver2 || info.isOver3;
+            return info.isOver0 || info.isOver1 || info.isOver2 || info.isOver3;
         },
         showDetail : function(info) {
             var modal = $modal.open({
