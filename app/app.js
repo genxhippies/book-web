@@ -37,7 +37,7 @@ app.run(['$rootScope', '$window', 'auth-service', function($rootScope, $window, 
              To register a new app visit Facebook App dashboard
              ( https://developers.facebook.com/apps/ )
             */
-            appId: '867539250008038',
+            appId: '1589308981337436',
             status: true,
             cookie: true,
             xfbml: true,
